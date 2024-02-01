@@ -11,3 +11,6 @@ insert_final_newline = true
 [.fishrc]
 language = fish
 
+[.tmuxrc]
+language = tmux
+

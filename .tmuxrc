@@ -1,0 +1,54 @@
+set -g mouse on # let's fucking go boyz
+
+set-option -g history-limit 8192
+set-option -g allow-rename off # tmux auto-rename
+
+# neovim :checkhealth
+set -sg escape-time 10 # hangs ESC
+set -g focus-events on # don't know what does
+set-option -sa terminal-features ',alacritty:RGB' # ugly line
+
+set -g base-index 1 # start from the start of the keyboard
+set -g pane-base-index 1 # same with panes
+
+bind r source-file ~/.tmux.conf # reload config
+
+# remap prefix to F12
+unbind C-b
+set-option -g prefix F12
+bind-key F12 send-prefix
+
+# split panes using | and -
+unbind '"'
+unbind %
+bind | split-window -h
+bind - split-window -v
+
+# switch panes using Alt+hjkl
+bind -n M-h select-pane -L
+bind -n M-j select-pane -D
+bind -n M-k select-pane -U
+bind -n M-l select-pane -R
+
+# pane borders
+set -g pane-border-style 'fg=0'
+set -g pane-active-border-style 'fg=4'
+
+# fix tmux bar
+set -g status on
+set -g status-bg default
+set -g status-position top
+set -g status-justify left 
+set -g status-interval 15
+
+set -g status-left ''
+
+set -g status-right ' #[fg=3]%H#[fg=0]:#[fg=3]%M #[fg=5]%d#[fg=0]/#[fg=5]%m '
+set -g status-right-style 'bg=default bold'
+
+setw -g window-status-format ' #[fg=3]#I#[fg=0]. #[default]#W#[fg=1]#F '
+setw -g window-status-style 'bg=default'
+
+setw -g window-status-current-format ' #[fg=3]#I#[fg=0]. #[default]#W#[fg=1]#F '
+setw -g window-status-current-style 'bg=default bold'
+
