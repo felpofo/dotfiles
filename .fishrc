@@ -1,0 +1,26 @@
+stty ixany # https://unix.stackexchange.com/questions/12107/how-to-unfreeze-after-accidentally-pressing-ctrl-s-in-a-terminal
+
+set -x EDITOR nvim
+
+alias gc 'git commit'
+alias gca 'git commit --amend'
+alias gcane 'git commit --amend --no-edit'
+alias gr 'git rebase --root -i'
+alias grc 'git rebase --continue'
+alias gra 'git rebase --abort'
+
+function find; fd; end
+function grep; rg; end
+function cat; bat -p; end
+
+function ls; exa $argv; end
+function ll; exa -l --smart-group $argv; end
+function la; exa -la --smart-group $argv; end
+function tree; exa -T $argv; end
+
+function td; pushd (mktemp -d); end
+
+fish_path_add ~/.local/bin
+fish_path_add ~/.cargo/bin
+fish_path_add ~/.deno/bin
+fish_path_add ~/PNPM_HOME
