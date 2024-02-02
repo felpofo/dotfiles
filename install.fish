@@ -1,7 +1,7 @@
 #!/usr/bin/fish
 
 set overwrite false
-set clean false
+set purge false
 set unlink false
 
 set i 0
@@ -10,24 +10,31 @@ while true
   if test $i -gt (count $argv); break; end
 
   switch $argv[$i]
-    case -o --overwrite
-      set overwrite true
-    case -c --clean
-      set clean true
-    case -u --unlink
-      set unlink true
-    case --
-      break
+    case -o --overwrite; set overwrite true
+    case -p --purge;  set purge true
+    case -u --unlink; set unlink true
+    case --; break
   end
 end
 set -e i
 
+if $purge
+or $unlink
+  set overwrite true
+end
 
-function delete -a file
-  if test -e $file
-    echo -e "Removing '\x1b[31m$file\x1b[m'"
-    rm -f $file
+
+function delete -a file color
+  if test (count $argv) -eq 1
+    set color 31
   end
+
+  if not $overwrite
+    backup $destination
+  end
+
+  echo -e "Removing '\x1b["$color"m$file\x1b[m'"
+  rm -f $file
 end
 
 function backup -a file
@@ -35,39 +42,62 @@ function backup -a file
   mv $file $file.old
 end
 
+function confirm
+  while true
+    read -lP "Continue? [Y/n] " confirm
+
+    switch $confirm
+      case '' Y y
+        return (eval true)
+      case N n
+        return (eval false)
+    end
+  end
+end
+
 
 function link -a source destination
-  if test -L $destination
-    echo -e "Ignoring '\x1b[36m$source\x1b[m' because '\x1b[34m$destination\x1b[m' already exists"
-    return
-  end
-
-  if test -f $destination
-    if $overwrite
+  if not test -L $destination
+    if test -f $destination
       delete $destination
-    else
-      backup $destination
     end
   end
 
   mkdir -p (path dirname $destination)
 
-  echo -e "Linked '\x1b[36m$source\x1b[m' -> '\x1b[34m$destination\x1b[m'"
-  ln -s $source $destination
+  echo -e "Linking '\x1b[36m$source\x1b[m' -> '\x1b[34m$destination\x1b[m'"
+  ln -sf $source $destination
 end
 
-function unlink -a destination
-  if not test -L $destination
-    echo -e "Ignoring non-symlink '\x1b[34m$destination\x1b[m'"
+if $unlink
+  echo -e "\x1b[33;1mWarning\x1b[m: will remove all \x1b[34;1mlinks\x1b[m"
+  if not confirm
     return
   end
 
-  delete $destination
+  function link -a _ destination
+    if test -L $destination
+      delete $destination 34
+    end
+  end
 end
 
-alias do link
-if $unlink; function do -a src dst; unlink $dst; end; end
-if $clean; function do -a src dst; delete $dst.old; end; end
+if $purge
+  echo -e "\x1b[33;1mWarning\x1b[m: will remove all \x1b[34;1mlink\x1b[m and \x1b[31;1mbackup\x1b[m files"
+  if not confirm
+    return
+  end
 
-do .fishrc ~/.config/fish/config.fish
-do .tmuxrc ~/.tmux.conf
+  function link -a _ destination
+    if test -L $destination
+      delete $destination 34
+    end
+
+    if test -f $destination.old
+      delete $destination.old
+    end
+  end
+end
+
+link (pwd)/.fishrc ~/.config/fish/config.fish
+link (pwd)/.tmuxrc ~/.tmux.conf

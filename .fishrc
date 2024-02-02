@@ -18,8 +18,8 @@ function tree; exa -T $argv; end
 
 function td; pushd (mktemp -d); end
 
-fish_path_add ~/.local/bin
-# fish_path_add ~/.cargo/bin
+fish_add_path ~/.local/bin
+# fish_add_path ~/.cargo/bin
 
 # .profile
 # ssh, shells, etc.
