@@ -1,10 +1,11 @@
-#!/usr/bin/fish
+#!/bin/fish
 
 ################################################################
 
 set overwrite false
 set purge false
 set unlink false
+set dryrun false
 
 ################################################################
 
@@ -17,6 +18,7 @@ while true
     case -o --overwrite; set overwrite true
     case -p --purge;  set purge true
     case -u --unlink; set unlink true
+    case -d --dryrun; set dryrun true
     case --; break
   end
 end
@@ -39,12 +41,12 @@ function delete -a file color
   end
 
   echo -e "Removing '\x1b["$color"m$file\x1b[m'"
-  rm -f $file
+  if not $dryrun; rm -f $file; end
 end
 
 function backup -a file
   echo -e "Backing up '\x1b[33m$file\x1b[m' -> '\x1b[32m$file.old\x1b[m'"
-  mv $file $file.old
+  if not $dryrun; mv $file $file.old; end
 end
 
 function confirm
@@ -69,18 +71,21 @@ function link -a source destination
     end
   end
 
-  mkdir -p (path dirname $destination)
-
   echo -e "Linking '\x1b[36m$source\x1b[m' -> '\x1b[34m$destination\x1b[m'"
-  ln -sf $source $destination
+  if not $dryrun
+    mkdir -p (path dirname $destination)
+    ln -sf $source $destination
+  end
 end
 
 ################################################################
 
 if $unlink
-  echo -e "\x1b[33;1mWarning\x1b[m: will remove all \x1b[34;1mlinks\x1b[m"
-  if not confirm
-    return
+  if not $dryrun
+    echo -e "\x1b[33;1mWarning\x1b[m: will remove all \x1b[34;1mlinks\x1b[m"
+    if not confirm
+      return
+    end
   end
 
   function link -a _ destination
@@ -91,18 +96,28 @@ if $unlink
 end
 
 if $purge
-  echo -e "\x1b[33;1mWarning\x1b[m: will remove all \x1b[34;1mlink\x1b[m and \x1b[31;1mbackup\x1b[m files"
-  if not confirm
-    return
+  if not $dryrun
+    echo -e "\x1b[33;1mWarning\x1b[m: will remove all \x1b[34;1mlink\x1b[m and \x1b[31;1mbackup\x1b[m files"
+    if not confirm
+      return
+    end
   end
 
   function link -a _ destination
     if test -L $destination
-      delete $destination 34
+      if test -d $destination
+        delete $destination 34
+      else
+        delete $destination 36
+      end
     end
 
-    if test -f $destination.old
-      delete $destination.old
+    if test -e $destination.old
+      if test -d $destination.old
+        delete $destination.old 35
+      else
+        delete $destination.old
+      end
     end
   end
 end
@@ -116,4 +131,14 @@ link (pwd)/.alacrittyrc ~/.config/alacritty.toml
 link (pwd)/.alacrittytheme ~/.config/alacritty.theme.toml
 link (pwd)/.alacrittykeys ~/.config/alacritty.keybinds.toml
 
+link (pwd)/.xinitrc ~/.xinitrc
 link (pwd)/.sxhkdrc ~/.config/sxhkd/sxhkdrc
+link (pwd)/.bspwmrc ~/.config/bspwm/bspwmrc
+
+link (pwd)/.polybarrc ~/.config/polybar/config.ini
+
+link (pwd)/.scripts ~/.scripts
+
+#link (pwd)/.dunstrc ~/.config/dunst/dunstrc
+#link (pwd)/.mpdrc ~/.config/mpd/mpd.conf
+#link (pwd)/.mpd ~/.mpd

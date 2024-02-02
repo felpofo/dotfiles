@@ -27,22 +27,26 @@ function td; pushd (mktemp -d); end
 ################################################################
 
 fish_add_path ~/.local/bin
+fish_add_path ~/.scripts
 # fish_add_path ~/.cargo/bin
 
 ################################################################
 
 # .profile
-# ssh, shells, etc.
+# run on almost everything but terminal emulators (?)
 if status is-login
-
+  if string match '/dev/tty1' (tty) &> /dev/null
+    if test -z $DISPLAY
+      startx > .bspwm.log 2> .bspwm.err
+    end
+  end
 end
 
 ################################################################
 
 # .*rc
-# terminals, etc.<F2>
+# run on almost everything too but idk where it doesn't
 if status is-interactive
   stty ixany # https://unix.stackexchange.com/questions/12107/how-to-unfreeze-after-accidentally-pressing-ctrl-s-in-a-terminal
 end
-
-################################################################
+##############################################################

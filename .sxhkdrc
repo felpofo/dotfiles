@@ -31,21 +31,25 @@ super + Return
 super + f
   firefox
 
+# discord
+super + d
+  discord
+
 # spotify (ugh)
 super + s
-  ~/.scripts/void.fish --first --class 'Spotify' -e spotify
+  spotify
 
 # file explorer
-super + {_,shift + }e
-  {~/.scripts/void.fish --terminal,alacritty} -e ranger
+super + e
+  alacritty -e ranger
 
 # music
-super + {_,shift + }p
-  {~/.scripts/void.fish --exit-on-close --terminal,alacritty} -e ncmpcpp
+super + p
+  alacritty -e ncmpcpp
 
 # process manager
-ctrl + {_,shift + }alt + Delete
-  {~/.scripts/void.fish --exit-on-close --terminal,alacritty} -e btop
+ctrl + alt + Delete
+  alacritty -e btop
 
 ################################################################
 
