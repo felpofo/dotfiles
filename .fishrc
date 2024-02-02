@@ -37,7 +37,7 @@ fish_add_path ~/.scripts
 if status is-login
   if string match '/dev/tty1' (tty) &> /dev/null
     if test -z $DISPLAY
-      startx > .bspwm.log 2> .bspwm.err
+      xinit &> ~/.bspwm.log
     end
   end
 end

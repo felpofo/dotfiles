@@ -132,6 +132,7 @@ link (pwd)/.alacrittytheme ~/.config/alacritty.theme.toml
 link (pwd)/.alacrittykeys ~/.config/alacritty.keybinds.toml
 
 link (pwd)/.xinitrc ~/.xinitrc
+link (pwd)/.Xresources ~/.Xresources
 link (pwd)/.sxhkdrc ~/.config/sxhkd/sxhkdrc
 link (pwd)/.bspwmrc ~/.config/bspwm/bspwmrc
 

@@ -1,13 +1,17 @@
 ################################################################
 
+# reload bspwm
+super + F5
+  bspc wm -r
+
 # restart sxhkd
 super + F6
   pkill -USR1 -x sxhkd; \
   notify-send 'sxhkd' 'reloaded'
 
-# quit/reload bspwmrc
-super + {Escape,F5}
-  bspc {quit,wm -r}
+# quit bspwm
+super + Escape
+  exit.fish
 
 # turn off monitor
 super + @Pause
@@ -15,7 +19,7 @@ super + @Pause
 
 # lock
 super + alt + l
-  ~/.scripts/lock.fish
+  lock.fish
 
 ################################################################
 
@@ -132,16 +136,16 @@ super + shift + bracket{left,right}
 ################################################################
 
 Print
-  ~/.scripts/print.fish
+  print.fish
 
 shift + Print
-  ~/.scripts/print.fish --full
+  print.fish --full
 
 ctrl + Print
-  ~/.scripts/print.fish --save
+  print.fish --save
 
 ctrl + shift + Print
-  ~/.scripts/print.fish --full --save
+  print.fish --full --save
 
 ################################################################
 
