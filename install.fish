@@ -1,8 +1,12 @@
 #!/usr/bin/fish
 
+################################################################
+
 set overwrite false
 set purge false
 set unlink false
+
+################################################################
 
 set i 0
 while true
@@ -23,6 +27,7 @@ or $unlink
   set overwrite true
 end
 
+################################################################
 
 function delete -a file color
   if test (count $argv) -eq 1
@@ -55,6 +60,7 @@ function confirm
   end
 end
 
+################################################################
 
 function link -a source destination
   if not test -L $destination
@@ -68,6 +74,8 @@ function link -a source destination
   echo -e "Linking '\x1b[36m$source\x1b[m' -> '\x1b[34m$destination\x1b[m'"
   ln -sf $source $destination
 end
+
+################################################################
 
 if $unlink
   echo -e "\x1b[33;1mWarning\x1b[m: will remove all \x1b[34;1mlinks\x1b[m"
@@ -99,5 +107,8 @@ if $purge
   end
 end
 
+################################################################
+
 link (pwd)/.fishrc ~/.config/fish/config.fish
 link (pwd)/.tmuxrc ~/.tmux.conf
+link (pwd)/.sxhkdrc ~/.config/sxhkd/sxhkdrc

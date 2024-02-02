@@ -1,0 +1,154 @@
+################################################################
+
+# restart sxhkd
+super + k
+  pkill -USR1 -x sxhkd; \
+  notify-send 'sxhkd' 'reloaded'
+
+# quit/reload bspwmrc
+super + {Escape,F5}
+  bspc {quit,wm -r}
+
+# turn off monitor
+super + @Pause
+  xset dpms force standby
+
+# lock
+super + alt + l
+  ~/.scripts/lock.fish
+
+################################################################
+
+# launcher
+super + @space
+  rofi -show drun
+
+# terminal
+super + Return
+  alacritty
+
+# browser
+super + f
+  firefox
+
+# spotify (ugh)
+super + s
+  ~/.scripts/void.fish --first --class 'Spotify' -e spotify
+
+# file explorer
+super + {_,shift + }e
+  {~/.scripts/void.fish --terminal,alacritty} -e ranger
+
+# music
+super + {_,shift + }p
+  {~/.scripts/void.fish --exit-on-close --terminal,alacritty} -e ncmpcpp
+
+# process manager
+ctrl + {_,shift + }alt + Delete
+  {~/.scripts/void.fish --exit-on-close --terminal,alacritty} -e btop
+
+################################################################
+
+# zoom
+super + z
+  if not pgrep -x boomer; boomer; end
+
+################################################################
+
+# close/kill window
+super + {_,shift + }q
+  bspc node -{c,k}
+
+# focus/switch window
+super + {_,shift + }{h,j,k,l}
+  bspc node -{f,s} {west,south,north,east}
+
+# alt tab thing
+alt + {_,shift + }Tab
+  bspc node -f {next,prev}.local.!hidden.window
+
+# hide focused window
+super + Down
+  bspc node -g hidden
+
+# resurrecting corpses
+super + Up
+  for node in (bspc query -N -n '.local.hidden.window'); \
+    bspc node $node -g hidden=off; \
+  end
+
+################################################################
+
+# move window
+super + ctrl + {h,j,k,l}
+  set x 20; bspc node -v {-$x 0,0 $x,0 -$x,$x 0}
+
+# resize window
+
+super + alt + {h,j,k,l}
+  set x 20; bspc node -z {right -$x 0,bottom 0 $x,bottom 0 -$x,right $x 0}
+
+# rotate node tree
+super + {_,shift + }r
+  bspc node @parent -R {90,-90}
+
+################################################################
+
+# toggle float/tiled
+super + t
+  if test (bspc query -n -T | jq -r '.client.state') = 'tiled'; \
+    bspc node -t floating; \
+  else; bspc node -t tiled; end
+
+# toggle fullscreen
+super + F11
+  bspc node -t '~fullscreen'
+
+# toggle monacle layout
+super + m
+  bspc desktop -l next
+
+################################################################
+
+# focus desktop
+super + {1-8}
+  bspc desktop -f {1-8}
+
+# focus prev/next desktop
+super + bracket{left,right}
+  bspc desktop -f {prev,next}.local
+
+# move window to desktop and focus
+super + shift + {1-8}
+  bspc node -d {1-8} --follow
+
+# move window to prev/next desktop and focus
+super + shift + bracket{left,right}
+  bspc node -d {prev,next}.local --follow
+
+################################################################
+
+Print
+  ~/.scripts/print.fish
+
+shift + Print
+  ~/.scripts/print.fish --full
+
+ctrl + Print
+  ~/.scripts/print.fish --save
+
+ctrl + shift + Print
+  ~/.scripts/print.fish --full --save
+
+################################################################
+
+XF86Audio{Play,Prev,Next,Stop}
+  playerctl {play-pause,previous,next,stop}
+
+XF86Audio{Lower,Raise}Volume
+  amixer set Master 10%{-,+}
+
+XF86AudioMute
+  amixer set Master toggle
+
+################################################################
