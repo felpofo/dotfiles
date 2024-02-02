@@ -35,7 +35,7 @@ function delete -a file color
   end
 
   if not $overwrite
-    backup $destination
+    backup $file
   end
 
   echo -e "Removing '\x1b["$color"m$file\x1b[m'"
@@ -112,3 +112,6 @@ end
 link (pwd)/.fishrc ~/.config/fish/config.fish
 link (pwd)/.tmuxrc ~/.tmux.conf
 link (pwd)/.sxhkdrc ~/.config/sxhkd/sxhkdrc
+link (pwd)/.alacrittyrc ~/.config/alacritty.toml
+link (pwd)/.alacrittytheme ~/.config/alacritty.theme.toml
+link (pwd)/.alacrittykeys ~/.config/alacritty.keybinds.toml
