@@ -1,40 +1,73 @@
 #!/usr/bin/fish
 
 set overwrite false
+set clean false
+set unlink false
 
-set i 1
+set i 0
 while true
+  set i (math $i + 1)
   if test $i -gt (count $argv); break; end
 
   switch $argv[$i]
-    case '-o' or '--overwrite'
+    case -o --overwrite
       set overwrite true
-    case '--'
+    case -c --clean
+      set clean true
+    case -u --unlink
+      set unlink true
+    case --
       break
   end
-
-  set i (math $i + 1)
 end
 set -e i
 
+
+function delete -a file
+  if test -e $file
+    echo -e "Removing '\x1b[31m$file\x1b[m'"
+    rm -f $file
+  end
+end
+
+function backup -a file
+  echo -e "Backing up '\x1b[33m$file\x1b[m' -> '\x1b[32m$file.old\x1b[m'"
+  mv $file $file.old
+end
+
+
 function link -a source destination
-  if test -L "$destination"
+  if test -L $destination
     echo -e "Ignoring '\x1b[36m$source\x1b[m' because '\x1b[34m$destination\x1b[m' already exists"
     return
   end
 
-  if test -f "$destination"
+  if test -f $destination
     if $overwrite
-      echo -e "Removing '\x1b[31m$destination\x1b[m'"
-      rm -f "$destination"
+      delete $destination
     else
-      echo -e "Moving '\x1b[33m$destination\x1b[m' -> '\x1b[32m$destination.old\x1b[m'"
-      mv "$destination" "$destination.old"
+      backup $destination
     end
   end
 
-  echo -e "Done '\x1b[36m$source\x1b[m'"
-  ln -s "$source" "$destination"
+  mkdir -p (path dirname $destination)
+
+  echo -e "Linked '\x1b[36m$source\x1b[m' -> '\x1b[34m$destination\x1b[m'"
+  ln -s $source $destination
 end
 
-link .fishrc ~/.config/fish/config.fish
+function unlink -a destination
+  if not test -L $destination
+    echo -e "Ignoring non-symlink '\x1b[34m$destination\x1b[m'"
+    return
+  end
+
+  delete $destination
+end
+
+alias do link
+if $unlink; function do -a src dst; unlink $dst; end; end
+if $clean; function do -a src dst; delete $dst.old; end; end
+
+do .fishrc ~/.config/fish/config.fish
+do .tmuxrc ~/.tmux.conf

@@ -31,14 +31,14 @@ bind -n M-k select-pane -U
 bind -n M-l select-pane -R
 
 # pane borders
-set -g pane-border-style 'fg=0'
+set -g pane-border-style 'fg=default'
 set -g pane-active-border-style 'fg=4'
 
-# fix tmux bar
+# fix tmux bar lol
 set -g status on
-set -g status-bg default
+set -g status-style bg=default
 set -g status-position top
-set -g status-justify left 
+set -g status-justify left
 set -g status-interval 15
 
 set -g status-left ''
