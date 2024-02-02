@@ -1,7 +1,7 @@
 ################################################################
 
 # restart sxhkd
-super + k
+super + F6
   pkill -USR1 -x sxhkd; \
   notify-send 'sxhkd' 'reloaded'
 
@@ -67,9 +67,9 @@ super + {_,shift + }{h,j,k,l}
 alt + {_,shift + }Tab
   bspc node -f {next,prev}.local.!hidden.window
 
-# hide focused window
-super + Down
-  bspc node -g hidden
+# window flags
+super + {Down,Left,Right}
+  bspc node -g {hidden,sticky,marked}
 
 # resurrecting corpses
 super + Up
@@ -84,8 +84,7 @@ super + ctrl + {h,j,k,l}
   set x 20; bspc node -v {-$x 0,0 $x,0 -$x,$x 0}
 
 # resize window
-
-super + alt + {h,j,k,l}
+super + ctrl + alt + {h,j,k,l}
   set x 20; bspc node -z {right -$x 0,bottom 0 $x,bottom 0 -$x,right $x 0}
 
 # rotate node tree
