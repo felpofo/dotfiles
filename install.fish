@@ -111,7 +111,9 @@ end
 
 link (pwd)/.fishrc ~/.config/fish/config.fish
 link (pwd)/.tmuxrc ~/.tmux.conf
-link (pwd)/.sxhkdrc ~/.config/sxhkd/sxhkdrc
+
 link (pwd)/.alacrittyrc ~/.config/alacritty.toml
 link (pwd)/.alacrittytheme ~/.config/alacritty.theme.toml
 link (pwd)/.alacrittykeys ~/.config/alacritty.keybinds.toml
+
+link (pwd)/.sxhkdrc ~/.config/sxhkd/sxhkdrc

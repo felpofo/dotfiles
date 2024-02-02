@@ -1,0 +1,31 @@
+import = [
+  "~/.config/alacritty.theme.toml",
+  "~/.config/alacritty.keybinds.toml"
+]
+
+live_config_reload = true
+
+[window]
+dimensions = { columns = 120, lines = 30 }
+dynamic_padding = true
+decorations = "None"
+opacity = 0.975
+resize_increments = true
+
+[scrolling]
+history = 8192
+multiplier = 6
+
+[font]
+normal = { family = "Iosevka Nerd Font" }
+size = 16
+offset = { y = -2 }
+
+[selection]
+save_to_clipboard = true
+
+[cursor]
+style = { shape = "Underline" }
+vi_mode_style = { shape = "Block" }
+
+
