@@ -33,11 +33,21 @@ bspc config gapless_monocle true
 bspc config pointer_action1 move
 bspc config pointer_action2 resize_side
 
-# todo: will never do
-#. rules.fish
+. ~/.config/bspwm/rules.fish
 #. startup.fish
 
-feh --bg-fill ~/.wallpaper
+function run
+  if not pgrep -fx $argv[1] &> /dev/null
+    $argv &
+  end
+end
+
+run /usr/lib/xdg-desktop-portal
+run /usr/lib/xdg-desktop-portal-gtk
+run /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
+
+
+feh --bg-fill ~/.wallpaper &
 
 function run
   if not pgrep -x $argv[1] &> /dev/null
@@ -58,16 +68,6 @@ run dunst
 run network.fish
 run border.fish
 run mpd.fish
-
-function run
-  if not pgrep -fx $argv[1] &> /dev/null
-    $argv &
-  end
-end
-
-run /usr/lib/xdg-desktop-portal
-run /usr/lib/xdg-desktop-portal-gtk
-run /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
 
 easyeffects -l custom &
 

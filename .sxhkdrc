@@ -2,7 +2,8 @@
 
 # reload bspwm
 super + F5
-  bspc wm -r
+  bspc wm -r; \
+  notify-send 'bspwm' 'reloaded'
 
 # restart sxhkd
 super + F6

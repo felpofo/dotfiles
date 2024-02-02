@@ -11,6 +11,9 @@ insert_final_newline = true
 [.{fish,sxhkd,bspwm}rc]
 language = fish
 
+[.bspwm.*]
+language = fish
+
 [.tmuxrc]
 language = tmux
 

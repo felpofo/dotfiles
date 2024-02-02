@@ -1,0 +1,8 @@
+#!/bin/fish
+
+bspc rule -a terminal         state=floating
+bspc rule -a gnome-calculator state=floating
+bspc rule -a mpv              state=fullscreen
+bspc rule -a '*:qemu'         state=floating
+bspc rule -a steam            state=floating
+bspc rule -a 'steam:*:Steam'  state=tiled

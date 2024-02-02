@@ -5,6 +5,10 @@ import = [
 
 live_config_reload = false
 
+[window.class]
+general = "terminal"
+instance = "terminal"
+
 [window]
 dimensions = { columns = 120, lines = 30 }
 dynamic_padding = true
