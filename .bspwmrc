@@ -1,10 +1,10 @@
 #!/bin/fish
 
 # xorg btw
-xrandr --output HDMI1 --mode 1920x1080 # https://wiki.archlinux.org/title/Xrandr#Testing_configuration
-xsetroot -cursor_name left_ptr         # https://man.archlinux.org/man/xsetroot.1.en#cursor_name
-setxkbmap br -option compose:menu      # https://wiki.archlinux.org/title/Xorg/Keyboard_configuration#Configuring_compose_key
-xset r rate 225 40                     # https://wiki.archlinux.org/title/Xorg/Keyboard_configuration#Using_xset
+xrandr --output HDMI1 --mode 1920x1080 --set "Broadcast RGB" "Full" # https://wiki.archlinux.org/title/Xrandr#Testing_configuration
+xsetroot -cursor_name left_ptr    # https://man.archlinux.org/man/xsetroot.1.en#cursor_name
+setxkbmap br -option compose:menu # https://wiki.archlinux.org/title/Xorg/Keyboard_configuration#Configuring_compose_key
+xset r rate 225 40                # https://wiki.archlinux.org/title/Xorg/Keyboard_configuration#Using_xset
 xmodmap -e 'keycode 62 = dead_greek Meta_R Shift_R Meta_R' # map ShiftR to use as old greek letters compose key
 
 # disable mouse acceleration (is this working as expected?)
