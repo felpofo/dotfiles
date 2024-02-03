@@ -43,7 +43,7 @@ function run
 end
 
 run /usr/lib/xdg-desktop-portal
-run /usr/lib/xdg-desktop-portal-gtk
+#run /usr/lib/xdg-desktop-portal-gtk
 run /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
 
 
