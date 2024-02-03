@@ -15,6 +15,9 @@ do (pwd)/.sxhkdrc ~/.config/sxhkd/sxhkdrc
 do (pwd)/.polybarrc ~/.config/polybar/config.ini
 do (pwd)/.dunstrc ~/.config/dunst/dunstrc
 
+do (pwd)/.btoprc ~/.config/btop/btop.conf
+do (pwd)/.btop.theme ~/.config/btop/themes/catppuccin.theme
+
 do (pwd)/scripts ~/.scripts
 
 #do (pwd)/.dunstrc ~/.config/dunst/dunstrc

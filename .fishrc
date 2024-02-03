@@ -19,8 +19,8 @@ alias grep 'rg'
 alias cat 'bat -p'
 
 alias ls 'exa'
-alias ll 'exa -l --smart-group'
-alias la 'exa -la --smart-group'
+alias ll 'exa -l --smart-group --git'
+alias la 'exa -la --smart-group --git'
 alias tree 'exa -T'
 
 alias td 'pushd (mktemp -d)'
