@@ -136,16 +136,16 @@ super + shift + bracket{left,right}
 ################################################################
 
 Print
-  print.fish
+  screenshot.fish
 
 shift + Print
-  print.fish --full
+  screenshot.fish --full
 
 ctrl + Print
-  print.fish --save
+  screenshot.fish --save
 
 ctrl + shift + Print
-  print.fish --full --save
+  screenshot.fish --full --save
 
 ################################################################
 

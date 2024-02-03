@@ -37,38 +37,42 @@ bspc config pointer_action2 resize_side
 #. startup.fish
 
 function run
-  if not pgrep -fx $argv[1] &> /dev/null
-    $argv &
-  end
+  killall $argv[1] &> /dev/null
+  $argv &
 end
 
-run /usr/lib/xdg-desktop-portal
-#run /usr/lib/xdg-desktop-portal-gtk
-run /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
-
-function run
+function run_once
   if not pgrep -x $argv[1] &> /dev/null
     $argv &
   end
 end
 
-run pipewire
-run pipewire-pulse
-run wireplumber
-run mpd
-
-run sxhkd
-
-run network.fish
-run border.fish
-run mpd.fish
-
-run easyeffects --gapplication-service
-
-function run
-  killall $argv[1]
-  $argv &
+function wait_to_open
+  while not pgrep -x $argv[1] &> /dev/null
+    $argv &
+  end
 end
+
+run_once /usr/lib/xdg-desktop-portal
+#run /usr/lib/xdg-desktop-portal-gtk
+run_once /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
+
+wait_to_open pipewire
+wait_to_open wireplumber
+wait_to_open pipewire-pulse
+
+run_once mpd
+wait_to_open mpd-mpris
+
+if ip link show enp2s0f1 | grep DOWN
+  network.fish
+end
+
+run_once border.fish
+run_once mpd.fish
+
+run_once sxhkd
+run_once easyeffects --gapplication-service
 
 run polybar
 run dunst

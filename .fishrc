@@ -2,23 +2,28 @@
 
 set -gx EDITOR nvim
 
-alias gc 'git commit'
-alias gca 'git commit --amend'
-alias gcane 'git commit --amend --no-edit'
-alias gr 'git rebase --root -i'
-alias grc 'git rebase --continue'
-alias gra 'git rebase --abort'
+#set -gx XDG_CONFIG_HOME=~/.config
+#set -gx XDG_CACHE_HOME=~/.cache
+#set -gx XDG_SHARE_HOME=~/.local/share
+#set -gx XDG_STATE_HOME=~/.local/state
 
-function find; fd $argv; end
-function grep; rg $argv; end
-function cat; bat -p $argv; end
+abbr gc 'git commit'
+abbr gca 'git commit --amend'
+abbr gcane 'git commit --amend --no-edit'
+abbr gr 'git rebase --root -i'
+abbr grc 'git rebase --continue'
+abbr gra 'git rebase --abort'
+
+alias find 'fd'
+alias grep 'rg'
+alias cat 'bat -p'
 
 alias ls 'exa'
-function ll; exa -l --smart-group $argv; end
-function la; exa -la --smart-group $argv; end
-function tree; exa -T $argv; end
+alias ll 'exa -l --smart-group'
+alias la 'exa -la --smart-group'
+alias tree 'exa -T'
 
-function td; pushd (mktemp -d); end
+alias td 'pushd (mktemp -d)'
 
 fish_add_path ~/.local/bin
 fish_add_path ~/.scripts
@@ -29,7 +34,7 @@ fish_add_path ~/.scripts
 if status is-login
   if string match '/dev/tty1' (tty) &> /dev/null
     if test -z $DISPLAY
-      xinit &> ~/.bspwm.log
+      startx &>> ~/.wm.log &
     end
   end
 end
