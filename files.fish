@@ -13,6 +13,7 @@ do (pwd)/.bspwm.rules ~/.config/bspwm/rules.fish
 do (pwd)/.sxhkdrc ~/.config/sxhkd/sxhkdrc
 
 do (pwd)/.polybarrc ~/.config/polybar/config.ini
+do (pwd)/.dunstrc ~/.config/dunst/dunstrc
 
 do (pwd)/scripts ~/.scripts
 

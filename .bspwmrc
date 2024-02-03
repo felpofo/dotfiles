@@ -8,7 +8,7 @@ xset r rate 225 40                     # https://wiki.archlinux.org/title/Xorg/K
 xmodmap -e 'keycode 62 = dead_greek Meta_R Shift_R Meta_R' # map ShiftR to use as old greek letters compose key
 
 # disable mouse acceleration (is this working as expected?)
-set id (xinput list | grep '⎜' | grep 'Mouse' | head -n1 | cut -d\t -f2 | cut -d= -f2)
+set id (xinput list | grep '⎜' | grep 'USB Gaming Mouse' | head -n1 | cut -d\t -f2 | cut -d= -f2)
 xinput set-prop $id 'libinput Accel Speed' -1
 
 # a lot of desktops
@@ -46,28 +46,33 @@ run /usr/lib/xdg-desktop-portal
 #run /usr/lib/xdg-desktop-portal-gtk
 run /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
 
-
-feh --bg-fill ~/.wallpaper &
-
 function run
   if not pgrep -x $argv[1] &> /dev/null
     $argv &
   end
 end
 
-run polybar
-
 run pipewire
+run pipewire-pulse
 run wireplumber
-run easyeffects --gapplication-service
 run mpd
 
 run sxhkd
-run dunst
 
 run network.fish
 run border.fish
 run mpd.fish
 
+run easyeffects --gapplication-service
+
+function run
+  killall $argv[1]
+  $argv &
+end
+
+run polybar
+run dunst
+
+feh --bg-fill ~/.wallpaper &
 easyeffects -l custom &
 

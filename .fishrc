@@ -1,8 +1,6 @@
-################################################################
+#!/bin/fish
 
 set -gx EDITOR nvim
-
-################################################################
 
 alias gc 'git commit'
 alias gca 'git commit --amend'
@@ -10,8 +8,6 @@ alias gcane 'git commit --amend --no-edit'
 alias gr 'git rebase --root -i'
 alias grc 'git rebase --continue'
 alias gra 'git rebase --abort'
-
-################################################################
 
 function find; fd $argv; end
 function grep; rg $argv; end
@@ -24,13 +20,9 @@ function tree; exa -T $argv; end
 
 function td; pushd (mktemp -d); end
 
-################################################################
-
 fish_add_path ~/.local/bin
 fish_add_path ~/.scripts
 # fish_add_path ~/.cargo/bin
-
-################################################################
 
 # .profile
 # run on almost everything but terminal emulators (?)
@@ -42,11 +34,9 @@ if status is-login
   end
 end
 
-################################################################
-
 # .*rc
 # run on almost everything too but idk where it doesn't
 if status is-interactive
   stty ixany # https://unix.stackexchange.com/questions/12107/how-to-unfreeze-after-accidentally-pressing-ctrl-s-in-a-terminal
 end
-##############################################################
+

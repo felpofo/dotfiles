@@ -10,7 +10,7 @@ general = "terminal"
 instance = "terminal"
 
 [window]
-dimensions = { columns = 120, lines = 30 }
+dimensions = { columns = 80, lines = 20 }
 dynamic_padding = true
 decorations = "None"
 opacity = 0.975

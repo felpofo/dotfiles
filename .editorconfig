@@ -20,5 +20,5 @@ language = tmux
 [.alacritty*]
 language = toml
 
-[.polybarrc]
+[.{polybar,dunst}rc]
 language = dosini

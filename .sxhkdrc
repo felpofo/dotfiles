@@ -2,17 +2,16 @@
 
 # reload bspwm
 super + F5
-  bspc wm -r; \
-  notify-send 'bspwm' 'reloaded'
+  bspc wm -r
+
+# quit bspwm
+super + Escape
+  exit.fish
 
 # restart sxhkd
 super + F6
   pkill -USR1 -x sxhkd; \
   notify-send 'sxhkd' 'reloaded'
-
-# quit bspwm
-super + Escape
-  exit.fish
 
 # turn off monitor
 super + @Pause
