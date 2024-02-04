@@ -37,6 +37,8 @@ end
 alias do link
 . files.fish
 
+rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim
+
 function confirm
   while true
     read -lP "Confirm? [Y/n]" ok

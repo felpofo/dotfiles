@@ -1,6 +1,7 @@
 do (pwd)/.fishrc ~/.config/fish/config.fish
-do (pwd)/.tmuxrc ~/.tmux.conf
+do ~/.config/fish/config.fish ~/.fishrc
 
+do (pwd)/.tmuxrc ~/.tmux.conf
 do (pwd)/.alacrittyrc ~/.config/alacritty.toml
 do (pwd)/.alacritty.theme ~/.config/alacritty.theme.toml
 do (pwd)/.alacritty.keys ~/.config/alacritty.keybinds.toml
@@ -17,8 +18,9 @@ do (pwd)/.dunstrc ~/.config/dunst/dunstrc
 do (pwd)/.btoprc ~/.config/btop/btop.conf
 do (pwd)/.btop.theme ~/.config/btop/themes/catppuccin.theme
 
-do (pwd)/scripts ~/.scripts
-
-do (pwd)/.dunstrc ~/.config/dunst/dunstrc
 do (pwd)/.mpdrc ~/.config/mpd/mpd.conf
 mkdir -p .mpd
+
+do (pwd)/scripts ~/.scripts
+do (pwd)/nvim ~/.config/nvim
+
