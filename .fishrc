@@ -7,12 +7,17 @@ set -gx XDG_CACHE_HOME ~/.cache
 set -gx XDG_SHARE_HOME ~/.local/share
 set -gx XDG_STATE_HOME ~/.local/state
 
+abbr gs 'git status'
+abbr ga 'git add'
 abbr gc 'git commit'
 abbr gca 'git commit --amend'
 abbr gcane 'git commit --amend --no-edit'
 abbr gr 'git rebase --root -i'
 abbr grc 'git rebase --continue'
 abbr gra 'git rebase --abort'
+abbr gs 'git checkout'
+abbr gbe 'git checkout --orphan'
+abbr gbn 'git checkout -b'
 
 alias find 'fd'
 alias grep 'rg'
