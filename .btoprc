@@ -50,10 +50,10 @@ graph_symbol_net = "default"
 graph_symbol_proc = "default"
 
 #* Manually set which boxes to show. Available values are "cpu mem net proc" and "gpu0" through "gpu5", separate values with whitespace.
-shown_boxes = "cpu mem net proc gpu0"
+shown_boxes = "cpu mem net proc"
 
 #* Update time in milliseconds, recommended 2000 ms or above for better sample times for graphs.
-update_ms = 300
+update_ms = 400
 
 #* Processes sorting, "pid" "program" "arguments" "threads" "user" "memory" "cpu lazy" "cpu direct",
 #* "cpu lazy" sorts top process over time (easier to follow), "cpu direct" updates top process directly.
@@ -98,10 +98,10 @@ cpu_graph_upper = "total"
 
 #* Sets the CPU stat shown in lower half of the CPU graph, "total" is always available.
 #* Select from a list of detected attributes from the options menu.
-cpu_graph_lower = "user"
+cpu_graph_lower = "Auto"
 
 #* If gpu info should be shown in the cpu box. Available values = "Auto", "On" and "Off".
-show_gpu_info = "On"
+show_gpu_info = "Auto"
 
 #* Toggles if the lower CPU graph should be inverted.
 cpu_invert_lower = True
@@ -119,10 +119,10 @@ show_uptime = True
 check_temp = True
 
 #* Which sensor to use for cpu temperature, use options menu to select from list of available sensors.
-cpu_sensor = "coretemp/Package id 0"
+cpu_sensor = "Auto"
 
 #* Show temperatures for cpu cores also if check_temp is True and sensors has been found.
-show_coretemp = False
+show_coretemp = True
 
 #* Set a custom mapping between core and coretemp, can be needed on certain cpus to get correct temperature for correct core.
 #* Use lm-sensors or similar to see which cores are reporting temperatures on your machine.
@@ -141,13 +141,13 @@ show_cpu_freq = True
 
 #* Draw a clock at top of screen, formatting according to strftime, empty string to disable.
 #* Special formatting: /host = hostname | /user = username | /uptime = system uptime
-clock_format = "/user@/host %X %d/%m/%Y"
+clock_format = "%X"
 
 #* Update main ui in background when menus are showing, set this to false if the menus is flickering too much for comfort.
 background_update = True
 
 #* Custom cpu model name, empty string to disable.
-custom_cpu_name = "Pentium 2 Pro Max+"
+custom_cpu_name = "Pentium 2"
 
 #* Optional filter for shown disks, should be full path of a mountpoint, separate multiple values with whitespace " ".
 #* Begin line with "exclude=" to change to exclude filter, otherwise defaults to "most include" filter. Example: disks_filter="exclude=/boot /home/user".
@@ -166,7 +166,7 @@ zfs_arc_cached = True
 show_swap = True
 
 #* Show swap as a disk, ignores show_swap value above, inserts itself after first disk.
-swap_disk = False
+swap_disk = True
 
 #* If mem box should be split to also show disks info.
 show_disks = True
@@ -197,12 +197,12 @@ io_graph_combined = False
 io_graph_speeds = ""
 
 #* Set fixed values for network graphs in Mebibits. Is only used if net_auto is also set to False.
-net_download = 400
+net_download = 100
 
-net_upload = 400
+net_upload = 100
 
 #* Use network graphs auto rescaling mode, ignores any values set above and rescales down to 10 Kibibytes at the lowest.
-net_auto = False
+net_auto = True
 
 #* Sync the auto scaling for download and upload to whichever currently has the highest scale.
 net_sync = True
@@ -224,10 +224,10 @@ log_level = "WARNING"
 nvml_measure_pcie_speeds = True
 
 #* Horizontally mirror the GPU graph.
-gpu_mirror_graph = False
+gpu_mirror_graph = True
 
 #* Custom gpu0 model name, empty string to disable.
-custom_gpu_name0 = "RTX 4090 SUPER OC"
+custom_gpu_name0 = ""
 
 #* Custom gpu1 model name, empty string to disable.
 custom_gpu_name1 = ""
