@@ -1,0 +1,36 @@
+music_directory "~/Music"
+playlist_directory "~/.mpd/playlists"
+
+database {
+	plugin "simple"
+	path "~/.mpd/database"
+	cache_directory	"~/.mpd/cache"
+}
+
+log_file "~/.mpd/log"
+pid_file "~/.mpd/pid"
+state_file "~/.mpd/state"
+sticker_file "~/.mpd/sticker.sql"
+
+filesystem_charset "UTF-8"
+
+bind_to_address	"~/.mpd/socket"
+bind_to_address "0.0.0.0"
+port "6600"
+
+restore_paused "yes"
+
+follow_outside_symlinks	"yes"
+follow_inside_symlinks "yes"
+
+zeroconf_enabled "yes"
+zeroconf_name	"Music Player @ %h"
+
+input {
+	plugin "file"
+}
+
+audio_output {
+	type "pipewire"
+	name "Local"
+}

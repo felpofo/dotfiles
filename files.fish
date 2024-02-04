@@ -20,6 +20,5 @@ do (pwd)/.btop.theme ~/.config/btop/themes/catppuccin.theme
 do (pwd)/scripts ~/.scripts
 
 do (pwd)/.dunstrc ~/.config/dunst/dunstrc
-#do (pwd)/.mpdrc ~/.config/mpd/mpd.conf
-#do (pwd)/.mpd ~/.mpd
-
+do (pwd)/.mpdrc ~/.config/mpd/mpd.conf
+mkdir -p .mpd
