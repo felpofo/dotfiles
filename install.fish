@@ -37,3 +37,21 @@ end
 alias do link
 . files.fish
 
+function confirm
+  while true
+    read -lP "Confirm? [Y/n]" ok
+
+    switch ok
+      case Y y ''
+        return 0
+      case N n
+        return 1
+    end
+  end
+end
+
+# sudoers
+# TODO  make this an optional thing, the final user may want to use nmcli or systemctl to do this kind of thing
+# TODO  sed all the 'network.fish' calls for that
+echo "do this operation as root - sudoers file"
+su - -c "echo '$(whoami) ALL=(ALL) ALL, NOPASSWD: /usr/bin/ip, /usr/bin/dhcpcd' >> /etc/sudoers.d/10-dotfiles"
