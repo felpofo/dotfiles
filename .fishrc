@@ -15,7 +15,7 @@ abbr gcane 'git commit --amend --no-edit'
 abbr gr 'git rebase --root -i'
 abbr grc 'git rebase --continue'
 abbr gra 'git rebase --abort'
-abbr gs 'git checkout'
+abbr gb 'git checkout'
 abbr gbe 'git checkout --orphan'
 abbr gbn 'git checkout -b'
 
