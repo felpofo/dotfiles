@@ -1,3 +1,3 @@
 #!/bin/sh
 
-exec bspwm &>> ~/.wm.log
+exec bspwm &> ~/.wm.log

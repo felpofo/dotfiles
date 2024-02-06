@@ -21,7 +21,7 @@ abbr gbn 'git checkout -b'
 
 alias find 'fd'
 alias grep 'rg'
-alias cat 'bat -p'
+alias cat 'bat'
 
 alias ls 'exa'
 alias ll 'exa -l --smart-group --git'

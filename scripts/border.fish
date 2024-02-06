@@ -9,17 +9,17 @@ set red "#ed8796"
 function update_focused
   set focused (bspc query -n -T)
 
-  if (eval (echo $focused | jq '.private')) set private; end
-  if (eval (echo $focused | jq '.locked'))  set locked; end
-  if (eval (echo $focused | jq '.sticky'))  set sticky; end
-  if (eval (echo $focused | jq '.marked'))  set marked; end
+  set private (echo $focused | jq -r '.private')
+  set locked (echo $locked | jq -r '.locked')
+  set sticky (echo $sticky | jq -r '.sticky')
+  set marked (echo $marked | jq -r '.marked')
 
   set color $blue
 
-  if set -q $private; set color $pink; end
-  if set -q $locked; set color $purple; end
-  if set -q $sticky; set color $green; end
-  if set -q $marked; set color $red; end
+  if set -q $private; and $private; set color $pink; end
+  if set -q $locked; and $locked; set color $purple; end
+  if set -q $sticky; and $sticky; set color $green; end
+  if set -q $marked; and $marked; set color $red; end
 
   bspc config focused_border_color "$color"
 end
