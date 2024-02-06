@@ -7,17 +7,20 @@ return { 'neovim/nvim-lspconfig',
       lazy = false,
       config = true
     },
-    { 'williamboman/mason-lspconfig.nvim',
-      name = 'mason-lspconfig'
-    }
+    { 'williamboman/mason-lspconfig.nvim', name = 'mason-lspconfig' },
+    { 'hrsh7th/cmp-nvim-lsp', name = 'cmp-lsp' }
   },
   config = function(_, opts)
     local lsp = require 'lspconfig'
 
     vim.diagnostic.config(opts.diagnostics)
 
+    local capabilities = require 'cmp_nvim_lsp'.default_capabilities()
     local function setup(server)
-      lsp[server].setup(opts.servers[server])
+      local server_opts = opts.servers[server]
+      server_opts.capabilities = capabilities
+
+      lsp[server].setup(server_opts)
     end
 
     local mason_ok, mason_lsp = pcall(require, 'mason-lspconfig')
