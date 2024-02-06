@@ -90,6 +90,7 @@ return { 'nvim-lualine/lualine.nvim',
       icons_enabled = true,
       component_separators = '',
       section_separators = '',
+      globalstatus = true, -- one status bar only, instead of one per window
     },
     sections = {
       lualine_a = { 'mode' },
