@@ -73,3 +73,12 @@ opt.undofile = true
 -- keybinds
 opt.timeout = true
 opt.timeoutlen = 350
+
+local disable = {
+  'netrw'
+}
+
+for _, module in ipairs(disable) do
+  vim.g['loaded_' .. module] = 1
+  vim.g['loaded_' .. module .. 'Plugin'] = 1
+end
