@@ -54,7 +54,26 @@ return { 'neovim/nvim-lspconfig',
       severity_sort = true
     },
     servers = {
-      lua_ls = {},
+      lua_ls = {
+        settings = {
+          Lua = {
+            runtime = {
+              version = 'LuaJIT'
+            },
+            diagnostics = {
+              globals = {
+                'vim'
+              }
+            },
+            workspace = {
+              library = vim.api.nvim_get_runtime_file('', true)
+            },
+            telemetry = {
+              enable = false
+            }
+          }
+        }
+      },
       clangd = {},
       rust_analyzer = {},
       pyright = {},
