@@ -1,3 +1,4 @@
+local cmd = vim.cmd
 local options = { silent = true, noremap = true }
 
 local function map(mode, lhs, rhs)
@@ -20,21 +21,18 @@ vmap('<BS>', '"_x')
 nmap('<ESC>', ':nohlsearch <Bar> :echo <CR>')
 
 -- Close buffer
-nmap('<C-q>', vim.cmd.BufferClose)
-imap('<C-q>', vim.cmd.BufferClose)
-vmap('<C-q>', vim.cmd.BufferClose)
+nmap('<C-q>', cmd.BufferClose)
+imap('<C-q>', cmd.BufferClose)
+vmap('<C-q>', cmd.BufferClose)
 
 -- Switch buffer
-nmap('<C-n>', vim.cmd.BufferPrevious)
-nmap('<C-m>', vim.cmd.BufferNext)
+nmap('<C-n>', cmd.BufferPrevious)
+nmap('<C-m>', cmd.BufferNext)
 
 -- Save buffer
-nmap('<C-s>', vim.cmd.w)
-imap('<C-s>', vim.cmd.w)
-vmap('<C-s>', vim.cmd.w)
-
--- Files
-nmap('<C-e>', vim.cmd.Lex) -- TODO  open nvim-tree
+nmap('<C-s>', cmd.w)
+imap('<C-s>', cmd.w)
+vmap('<C-s>', cmd.w)
 
 -- Movement
 nmap('<C-h>', '<C-w>h')
@@ -59,9 +57,10 @@ tmap('<A-k>', '<C-w>+')
 tmap('<A-l>', '<C-w>>')
 
 -- Split windows
-nmap('<leader>sd', vim.cmd.vsplit)
-nmap('<leader>sv', vim.cmd.split)
+nmap('<leader>sd', cmd.vsplit)
+nmap('<leader>sv', cmd.split)
 
+-- Files
 local telescope = require 'telescope.builtin'
 local function find_hidden_files()
   telescope.find_files { hidden = true }
@@ -71,9 +70,12 @@ nmap('<leader>ff', telescope.find_files)
 nmap('<leader>fa', find_hidden_files)
 nmap('<leader>fg', telescope.live_grep)
 nmap('<leader>fb', telescope.buffers)
--- TODO  nvim tree toggle
---nmap('<leader>fe', )
 
+nmap('<C-e>', cmd.NvimTreeToggle)
+nmap('<leader>fe', cmd.NvimTreeFocus)
+
+
+-- Autocmds
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP Mappings',
   callback = function()

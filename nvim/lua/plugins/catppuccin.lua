@@ -11,6 +11,8 @@ return { 'catppuccin/nvim',
     integrations = {
       barbar = true,
       cmp = true,
+      nvimtree = true,
+      gitsigns = true,
     },
     custom_highlights = function(colors)
       return {
