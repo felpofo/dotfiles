@@ -18,13 +18,13 @@ vmap('<BS>', '"_x')
 nmap('<ESC>', ':nohlsearch <Bar> :echo <CR>')
 
 -- Close buffer
-nmap('<C-q>', vim.cmd.bd) -- TODO  BufferClose
-imap('<C-q>', vim.cmd.bd) -- TODO  BufferClose
-vmap('<C-q>', vim.cmd.bd) -- TODO  BufferClose
+nmap('<C-q>', vim.cmd.BufferClose)
+imap('<C-q>', vim.cmd.BufferClose)
+vmap('<C-q>', vim.cmd.BufferClose)
 
 -- Switch buffer
-nmap('<C-n>', vim.cmd.bp) -- TODO  BufferPrevious
-nmap('<C-m>', vim.cmd.bn) -- TODO  BufferNext
+nmap('<C-n>', vim.cmd.BufferPrevious)
+nmap('<C-m>', vim.cmd.BufferNext)
 
 -- Save buffer
 nmap('<C-s>', vim.cmd.w)
