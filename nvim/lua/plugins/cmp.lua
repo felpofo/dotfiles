@@ -46,6 +46,14 @@ return { 'hrsh7th/nvim-cmp',
             fallback()
           end
         end, { 'i', 's' }),
+        ['<Down>'] = cmp.mapping(function(fallback)
+          cmp.close()
+          fallback()
+        end, { 'i' }),
+        ['<Up>'] = cmp.mapping(function(fallback)
+          cmp.close()
+          fallback()
+        end, { 'i' }),
       }
     }
   end
