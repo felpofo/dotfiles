@@ -1,5 +1,6 @@
 local opt = vim.opt
 
+vim.g.mapleader = ','
 -- config mostly stolen from nvchad and lazyvim - too lazy to read all options one by one
 
 -- editor
