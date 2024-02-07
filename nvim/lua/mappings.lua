@@ -1,5 +1,7 @@
+local options = { silent = true, noremap = true }
+
 local function map(mode, lhs, rhs)
-  vim.keymap.set(mode, lhs, rhs, { silent = true, noremap = true })
+  vim.keymap.set(mode, lhs, rhs, options)
 end
 
 local function nmap(lhs, rhs) map('n', lhs, rhs) end
@@ -71,3 +73,22 @@ nmap('<leader>fg', telescope.live_grep)
 nmap('<leader>fb', telescope.buffers)
 -- TODO  nvim tree toggle
 --nmap('<leader>fe', )
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'LSP Mappings',
+  callback = function()
+    local lsp = vim.lsp
+    options.buffer = true
+
+    nmap('K', lsp.buf.hover)
+    nmap('<F2>', lsp.buf.rename)
+
+    nmap('<leader>gd', lsp.buf.definition)
+    nmap('<leader>gD', lsp.buf.declaration)
+    nmap('<leader>gi', lsp.buf.implementation)
+    nmap('<leader>go', lsp.buf.type_definition)
+    nmap('<leader>gr', lsp.buf.references)
+    nmap('<leader>gs', lsp.buf.signature_help)
+    nmap('<leader>gl', vim.diagnostic.open_float)
+  end
+})
