@@ -1,5 +1,6 @@
 return { 'hrsh7th/nvim-cmp',
   name = 'cmp',
+  event = 'BufNew',
   dependencies = {
     'lspconfig',
     { 'saadparwaiz1/cmp_luasnip', name = 'cmp-luasnip' },
