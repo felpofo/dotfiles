@@ -7,6 +7,15 @@ return { 'catppuccin/nvim',
     vim.cmd.colorscheme 'catppuccin'
   end,
   opts = {
-    flavour = "mocha"
+    flavour = "mocha",
+    integrations = {
+      barbar = true,
+      cmp = true,
+    },
+    custom_highlights = function(colors)
+      return {
+        CursorLineNr = { fg = colors.yellow }
+      }
+    end
   }
 }
