@@ -72,7 +72,7 @@ opt.undofile = true
 
 -- keybinds
 opt.timeout = true
-opt.timeoutlen = 350
+opt.timeoutlen = 500
 
 local disable = {
   'netrw'
