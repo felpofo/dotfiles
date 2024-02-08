@@ -82,3 +82,15 @@ for _, module in ipairs(disable) do
   vim.g['loaded_' .. module] = 1
   vim.g['loaded_' .. module .. 'Plugin'] = 1
 end
+
+local editorconfig = require 'editorconfig'
+
+local properties = {
+  language = function(buffer, value)
+    vim.bo[buffer].filetype = value
+  end
+}
+
+for property, executor in ipairs(properties) do
+  editorconfig.properties[property] = executor
+end
