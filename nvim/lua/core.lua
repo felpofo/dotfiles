@@ -91,6 +91,6 @@ local properties = {
   end
 }
 
-for property, executor in ipairs(properties) do
+for property, executor in pairs(properties) do
   editorconfig.properties[property] = executor
 end
