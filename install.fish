@@ -16,6 +16,10 @@ set -e i
 
 function link -a source destination
   if test -L $destination
+    if test (readlink $destination) = $source
+      return
+    end
+
     rm -f "$destination"
   end
 
@@ -34,10 +38,12 @@ function link -a source destination
   echo -e "\e[36mInstalled\e[m '"(path basename $source)"'"
 end
 
+if not test (readlink ~/.config/nvim) = (pwd)/nvim
+  rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim
+end
+
 alias do link
 . files.fish
-
-rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim
 
 function confirm
   while true
