@@ -45,14 +45,17 @@ super + s
 
 # file explorer
 super + e
+  bspc rule -a '*' -o state=fullscreen; \
   alacritty -e ranger
 
 # music
 super + p
+  bspc rule -a '*' -o state=fullscreen; \
   alacritty -e ncmpcpp
 
 # process manager
 ctrl + alt + Delete
+  bspc rule -a '*' -o state=fullscreen; \
   alacritty -e btop
 
 ################################################################
