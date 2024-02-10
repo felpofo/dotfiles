@@ -14,7 +14,7 @@ language = fish
 [.tmuxrc]
 language = tmux
 
-[.alacritty*]
+[.{alacritty,starship}*]
 language = toml
 
 [.{polybar,dunst}rc]

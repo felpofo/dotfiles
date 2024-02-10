@@ -6,7 +6,7 @@ if [ "$(id -u)" -eq 0 ]; then
 fi
 
 core="base-devel man-db man-pages texinfo git reflector openssl openssh mesa make cmake ninja hdparm gtk2 gtk3 gtk4 dconf dconf-editor gparted dhcp dhcpcd"
-apps="alacritty tmux fish chromium firefox telegram-desktop qbittorrent onlyoffice-bin obs-studio inkscape discord"
+apps="alacritty tmux fish starship chromium firefox telegram-desktop qbittorrent onlyoffice-bin obs-studio inkscape discord"
 dev="neovim vim clang gcc gdb rustup go zig python lua luajit nim jdk-openjdk jdk8-openjdk nasm wget curl sed jq xxd valgrind sqlite raylib sdl2 imagemagick github-cli android-tools"
 fonts="ttf-cascadia-code ttf-jetbrains-mono ttf-opensans ttf-ubunti-font-family ttc-iosevka ttf-iosevka-nerd"
 tools="eza bat ripgrep nnn btop pastel nmap ncdu fzf"
@@ -31,9 +31,3 @@ popd
 
 paru -Syu $aur
 
-pushd /tmp
-git clone https://git.sr.ht/~nasmevka/bspad
-cd bspad
-sed -ie 's/bspad/void.sh/g' bspad
-cp bspad ~/.local/bin/void.sh
-popd

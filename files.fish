@@ -1,6 +1,5 @@
 do (pwd)/.fishrc ~/.config/fish/config.fish
-do (pwd)/.fish.cmdline ~/.config/fish/conf.d/cmdline.fish
-do ~/.config/fish/config.fish ~/.fishrc
+do (pwd)/.starshiprc ~/.config/starship.toml
 
 do (pwd)/.tmuxrc ~/.tmux.conf
 do (pwd)/.alacrittyrc ~/.config/alacritty.toml
