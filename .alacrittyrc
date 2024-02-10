@@ -1,7 +1,4 @@
-import = [
-  "~/.config/alacritty.theme.toml",
-  "~/.config/alacritty.keybinds.toml"
-]
+import = ["~/.config/alacritty.theme.toml"]
 
 live_config_reload = false
 

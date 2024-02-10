@@ -1,5 +1,0 @@
-[keyboard]
-bindings = [
-  { key = ",", mods = "Alt", mode = "~Vi", action = "ToggleViMode" },
-  { key = ",", mods = "Alt", mode = "Vi", action = "ToggleViMode" },
-]

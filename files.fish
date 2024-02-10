@@ -4,7 +4,6 @@ do (pwd)/.starshiprc ~/.config/starship.toml
 do (pwd)/.tmuxrc ~/.tmux.conf
 do (pwd)/.alacrittyrc ~/.config/alacritty.toml
 do (pwd)/.alacritty.theme ~/.config/alacritty.theme.toml
-do (pwd)/.alacritty.keys ~/.config/alacritty.keybinds.toml
 
 do (pwd)/.xinitrc ~/.xinitrc
 
