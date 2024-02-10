@@ -67,6 +67,7 @@ opt.list = true -- show invisible characters
 -- buffer
 opt.confirm = true -- confirm modified buffers
 opt.backup = false -- backup after overwriting a file
+opt.swapfile = false -- disable swapfile
 opt.undofile = true
   opt.undolevels = 1024
 
