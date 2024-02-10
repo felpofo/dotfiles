@@ -19,7 +19,7 @@ do (pwd)/.btoprc ~/.config/btop/btop.conf
 do (pwd)/.btop.theme ~/.config/btop/themes/catppuccin.theme
 
 do (pwd)/.mpdrc ~/.config/mpd/mpd.conf
-mkdir -p .mpd
+mkdir -p ~/.config/mpd/playlists
 
 do (pwd)/scripts ~/.scripts
 do (pwd)/nvim ~/.config/nvim
